@@ -41,21 +41,17 @@
 					alert(msg);
 					return;
 			   }
-			   if(!(t >= -100 && t <= 100)){
+			   if(!(t >= 0 && t <= 100)){
 					msg = "Tempurature entered (in Celsius) must be between 0 and 100 C'";
 					alert(msg);
 					return;
 			   }
+			   else {
+				return 1;
+			   }
 			}
 
-	    $(document).ready(function(){
-			$("button").click(function(){
-			   var t = $('#temp').val();//celsius
-			   var u = $('#unit').val();
-
-			   var chk = validate(t);
-			   if(chk != null) return chk;
-
+			function conversion(t,u){
 			   var t1;
 			   var u1;
 			   
@@ -69,8 +65,20 @@
 					t1 = t * (4/5);
 					u1 = "Kelvin";
 			   }
-			   
+
 			   alert("Temperature is "+t1+" in "+u1);
+			   return;
+			   
+			}
+	    $(document).ready(function(){
+			$("button").click(function(){
+			   var t = $('#temp').val();//celsius
+			   var u = $('#unit').val();
+
+			   if (validate(t) != null){
+				conversion(t,u);
+			   }
+			   
 			});
 		});
 	</script>
